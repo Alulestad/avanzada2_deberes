@@ -12,5 +12,7 @@ public interface IVideoService {
 
 	public int actualizarComentariosPorDuracion(Double duracion, Boolean comentarios);
 
-	public int eliminarParaUsuarioYFecha(String usuario, LocalDateTime fecha);
+	public int eliminarPorFecha(LocalDateTime fecha);
+	
+	public List<Video> reportePorFechaSubida(LocalDateTime fechaSubida);
 }

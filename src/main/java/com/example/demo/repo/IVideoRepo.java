@@ -15,13 +15,16 @@ public interface IVideoRepo {
 	// resolucion de z y entre x y y caso contrario todos los videos entre esas fechas
 	// 2 todos los videos que tienen duracion menor a x minutos poner los comentarios
 	// en falso o verdadero
-	// 3 eliminar todos los videos del usuario x de una fecha especifica.
+	// 3 eliminar todos los videos de una fecha especifica.
 
 	public List<Video> seleccionarEntreFechasResolucion(LocalDateTime fechaInicial,LocalDateTime fechaFinal, Integer resolucion);
 	
 	public int actualizarComentariosPorDuracion(Double duracion, Boolean comentarios);
 	
-	public int eliminarParaUsuarioYFecha(String usuario, LocalDateTime fecha);
+	public int eliminarPorFecha(LocalDateTime fecha);
+	
+	public List<Video> seleccionarTodosPorFechaSubida(LocalDateTime fechaSubida);
+	
 	
 	
 }

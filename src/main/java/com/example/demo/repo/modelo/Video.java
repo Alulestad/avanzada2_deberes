@@ -6,9 +6,12 @@ import org.springframework.stereotype.Component;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
@@ -34,12 +37,11 @@ public class Video {
 	private Integer resolucionVideoP;
 	@Column(name = "vdeo_comentarios")
 	private Boolean comentarios;
-	@Column(name = "vdeo_usuario")
-	private String usuario;
-	
-	
-	
-	
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "vdeo_crco_id")
+	private CreadorContenido creadorContenido;
+
 	// Gets y sets
 	public Integer getId() {
 		return id;
@@ -81,14 +83,6 @@ public class Video {
 		this.resolucionVideoP = resolucionVideoP;
 	}
 
-	public String getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
-	}
-
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -105,13 +99,19 @@ public class Video {
 		this.comentarios = comentarios;
 	}
 
+	public CreadorContenido getCreadorContenido() {
+		return creadorContenido;
+	}
+
+	public void setCreadorContenido(CreadorContenido creadorContenido) {
+		this.creadorContenido = creadorContenido;
+	}
+
 	@Override
 	public String toString() {
 		return "Video [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", fechaSubida="
 				+ fechaSubida + ", duracion=" + duracion + ", resolucionVideoP=" + resolucionVideoP + ", comentarios="
-				+ comentarios + ", usuario=" + usuario + "]";
+				+ comentarios + "]";
 	}
-
-	
 
 }

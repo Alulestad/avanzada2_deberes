@@ -8,7 +8,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.demo.repo.ICreadorContenidoRepo;
+import com.example.demo.repo.IVideoRepo;
 import com.example.demo.repo.modelo.Video;
+import com.example.demo.repo.modelo.dto.CreadorContenidoDTO;
+import com.example.demo.service.ICreadorContenidoService;
 import com.example.demo.service.IVideoService;
 
 @SpringBootApplication
@@ -16,6 +20,9 @@ public class Tarea8DllApplication implements CommandLineRunner {
 
 	@Autowired
 	private IVideoService iVideoRService;
+	
+	@Autowired
+	private ICreadorContenidoService iCreadorContenidoService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Tarea8DllApplication.class, args);
@@ -24,22 +31,21 @@ public class Tarea8DllApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		List<Video> videos1 = this.iVideoRService.reporteEntreFechasResolucion(LocalDateTime.of(2006, 01, 01, 0, 0),
-				LocalDateTime.of(2009, 01, 01, 0, 0), 720);
-		videos1.forEach(System.out::println);
-
-		List<Video> videos2 = this.iVideoRService.reporteEntreFechasResolucion(LocalDateTime.of(2004, 01, 01, 0, 0),
-				LocalDateTime.of(2009, 01, 01, 0, 0), 720);
-		videos2.forEach(System.out::println);
-
-		int filasActualizadas = this.iVideoRService.actualizarComentariosPorDuracion(Double.valueOf(9),
-				Boolean.valueOf(true));
-		System.out.println("Filas actualizadas: " + filasActualizadas);
-
-		int filasEliminadas = this.iVideoRService.eliminarParaUsuarioYFecha("warrr",
-				LocalDateTime.of(2050, 02, 05, 0, 0));
-		System.out.println("Filas eliminadas: " + filasEliminadas);
-
+		System.out.println("#######DTO#######");
+		CreadorContenidoDTO creadorContenidoDTO1= iCreadorContenidoService.buscarCreadorContenidoDTOPorVideoID(1);
+		System.out.println(creadorContenidoDTO1);
+		
+		System.out.println("#######Fetch Lazy#######");
+		List<Video> videos= iVideoRService.reportePorFechaSubida(LocalDateTime.of(2023, 03, 02, 0, 0));
+		videos.forEach((v)->{
+			System.out.println("#Video n segun la fecha#");
+			System.out.println(v);
+			System.out.println("Creador de contenido propietario");
+			System.out.println(v.getCreadorContenido());
+			
+		});
+		
+		
 	}
 
 }

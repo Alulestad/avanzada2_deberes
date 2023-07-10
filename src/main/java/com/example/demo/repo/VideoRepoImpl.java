@@ -64,16 +64,29 @@ public class VideoRepoImpl implements IVideoRepo {
 	}
 
 	@Override
-	public int eliminarParaUsuarioYFecha(String usuario, LocalDateTime fecha) {
+	public int eliminarPorFecha(LocalDateTime fecha) {
 		// SQL: delete from video v where v.vdeo_usuario=? and v.vdeo_fecha_subida=?
-		// JPQL: delete from Video v where v.usuario=:datoUsuario and v.fechaSubida=:datoFecha
-		Query myQuery = this.entityManager
-				.createQuery("delete from Video v where v.usuario=:datoUsuario and v.fechaSubida=:datoFecha");
+		// JPQL: delete from Video v where v.usuario=:datoUsuario and
+		// v.fechaSubida=:datoFecha
+		Query myQuery = this.entityManager.createQuery("delete from Video v where v.fechaSubida=:datoFecha");
 
-		myQuery.setParameter("datoUsuario", usuario);
 		myQuery.setParameter("datoFecha", fecha);
 
 		return myQuery.executeUpdate();
+	}
+
+	@Override
+	public List<Video> seleccionarTodosPorFechaSubida(LocalDateTime fechaSubida) {
+		TypedQuery<Video> myQuery = this.entityManager
+				.createQuery("select v from Video v where v.fechaSubida=:datoFechaSubida", Video.class);
+		myQuery.setParameter("datoFechaSubida", fechaSubida);
+
+		List<Video> videos = myQuery.getResultList();
+		videos.forEach((v) -> {
+			v.getCreadorContenido().toString();
+		});
+
+		return videos;
 	}
 
 }

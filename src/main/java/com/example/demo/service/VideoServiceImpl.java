@@ -27,9 +27,15 @@ public class VideoServiceImpl implements IVideoService {
 	}
 
 	@Override
-	public int eliminarParaUsuarioYFecha(String usuario, LocalDateTime fecha) {
+	public int eliminarPorFecha(LocalDateTime fecha) {
 
-		return this.iVideoRepo.eliminarParaUsuarioYFecha(usuario, fecha);
+		return this.iVideoRepo.eliminarPorFecha(fecha);
 	}
 
+	@Override
+	public List<Video> reportePorFechaSubida(LocalDateTime fechaSubida) {
+		return this.iVideoRepo.seleccionarTodosPorFechaSubida(fechaSubida);
+	}
+
+	
 }
