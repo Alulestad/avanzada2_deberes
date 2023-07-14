@@ -89,4 +89,96 @@ public class VideoRepoImpl implements IVideoRepo {
 		return videos;
 	}
 
+	// Joins
+	@Override
+	public List<Video> seleccionarTodosInnerJoin() {
+		TypedQuery<Video> myQuery = this.entityManager
+				.createQuery("select v from Video v inner join v.creadorContenido cc", Video.class);
+
+		List<Video> videos = myQuery.getResultList();
+
+		System.out.println("jpql ejecutado");
+		videos.forEach(v -> {
+			if (v != null && v.getCreadorContenido() != null) {
+				v.getCreadorContenido().getCelular();
+
+			}
+		});
+		return videos;
+	}
+
+	@Override
+	public List<Video> seleccionarTodosOuterRightJoin() {
+		TypedQuery<Video> myQuery = this.entityManager
+				.createQuery("select v from Video v right join v.creadorContenido cc", Video.class);
+
+		List<Video> videos = myQuery.getResultList();
+
+		System.out.println("jpql ejecutado");
+		videos.forEach(v -> {
+			if (v != null && v.getCreadorContenido() != null) {
+				v.getCreadorContenido().getCelular();
+
+			}
+		});
+		return videos;
+	}
+
+	@Override
+	public List<Video> seleccionarTodosOuterLeftJoin() {
+		// SQL
+		// select * from video v left join creadorContenido cc on
+		// v.vdeo_crco_id=cc.crco_id
+		// JPQL
+		// select v from Video v left join CreadorContenido cc
+
+		TypedQuery<Video> myQuery = this.entityManager
+				.createQuery("select v from Video v left join v.creadorContenido cc", Video.class);
+
+		List<Video> videos = myQuery.getResultList();
+
+		System.out.println("jpql ejecutado");
+		videos.forEach(v -> {
+			if (v != null && v.getCreadorContenido() != null) {
+				v.getCreadorContenido().getCelular();
+
+			}
+		});
+		return videos;
+	}
+
+	@Override
+	public List<Video> seleccionarTodosOuterFullJoin() {
+		TypedQuery<Video> myQuery = this.entityManager
+				.createQuery("select v from Video v full join v.creadorContenido cc", Video.class);
+
+		List<Video> videos = myQuery.getResultList();
+
+		System.out.println("jpql ejecutado");
+		videos.forEach(v -> {
+			if (v != null && v.getCreadorContenido() != null) {
+				v.getCreadorContenido().getCelular();
+
+			}
+		});
+		return videos;
+	}
+
+	@Override
+	public List<Video> seleccionarTodosWhereJoin() {
+		TypedQuery<Video> myQuery = this.entityManager
+				.createQuery("select v from Video v,CreadorContenido cc where v.creadorContenido=cc", Video.class);
+
+		List<Video> videos = myQuery.getResultList();
+
+		System.out.println("jpql ejecutado");
+		videos.forEach(v -> {
+			if (v != null && v.getCreadorContenido() != null) {
+				v.getCreadorContenido().getCelular();
+
+			}
+		});
+		return videos;
+	}
+
 }

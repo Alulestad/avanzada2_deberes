@@ -13,6 +13,18 @@ public interface IVideoService {
 	public int actualizarComentariosPorDuracion(Double duracion, Boolean comentarios);
 
 	public int eliminarPorFecha(LocalDateTime fecha);
-	
+
 	public List<Video> reportePorFechaSubida(LocalDateTime fechaSubida);
+
+	// Joins
+	public List<Video> buscarTodosInnerJoin();
+
+	public List<Video> buscarTodosOuterRightJoin();
+
+	public List<Video> buscarTodosOuterLeftJoin();
+
+	public List<Video> buscarTodosOuterFullJoin();
+
+	public List<Video> buscarTodosWhereJoin();
+
 }

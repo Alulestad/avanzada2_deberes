@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -39,8 +40,8 @@ public class CreadorContenido {
 	@Column(name = "crco_fecha_creaecion_cuenta")
 	private LocalDateTime fechaCreacionCuenta;
 
-	@OneToMany(mappedBy = "creadorContenido")
-	private List<Video> video;
+	@OneToMany(mappedBy = "creadorContenido",fetch = FetchType.LAZY)
+	private List<Video> videos;
 
 	
 	//Get y set
@@ -108,12 +109,12 @@ public class CreadorContenido {
 		this.fechaCreacionCuenta = fechaCreacionCuenta;
 	}
 
-	public List<Video> getVideo() {
-		return video;
+	public List<Video> getVideos() {
+		return videos;
 	}
 
-	public void setVideo(List<Video> video) {
-		this.video = video;
+	public void setVideos(List<Video> video) {
+		this.videos = video;
 	}
 
 	
