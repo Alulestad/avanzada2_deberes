@@ -19,4 +19,6 @@ public interface ICreadorContenidoService {
 	public List<CreadorContenido> buscarTodosOuterFullJoin();
 
 	public List<CreadorContenido> buscarTodosWhereJoin();
+	
+	public List<CreadorContenido> buscarTodosJoinFetch();
 }

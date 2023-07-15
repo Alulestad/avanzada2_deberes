@@ -181,4 +181,12 @@ public class VideoRepoImpl implements IVideoRepo {
 		return videos;
 	}
 
+	@Override
+	public List<Video> seleccionarTodosJoinFetch() {
+		TypedQuery<Video> myQuery = this.entityManager
+				.createQuery("select v from Video v join fetch v.creadorContenido cc", Video.class);
+
+		return myQuery.getResultList();
+	}
+
 }

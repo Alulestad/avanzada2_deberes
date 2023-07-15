@@ -38,5 +38,7 @@ public interface IVideoRepo {
 	public List<Video> seleccionarTodosOuterFullJoin();
 
 	public List<Video> seleccionarTodosWhereJoin();
+	
+	public List<Video> seleccionarTodosJoinFetch();
 
 }

@@ -62,5 +62,11 @@ public class VideoServiceImpl implements IVideoService {
 		return this.iVideoRepo.seleccionarTodosWhereJoin();
 	}
 
+	@Override
+	public List<Video> buscarTodosJoinFetch() {
+		return this.iVideoRepo.seleccionarTodosJoinFetch();
+	}
+
+	
 	
 }

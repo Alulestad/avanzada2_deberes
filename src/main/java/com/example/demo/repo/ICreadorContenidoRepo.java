@@ -20,5 +20,7 @@ public interface ICreadorContenidoRepo {
 	
 	public List<CreadorContenido> seleccionarTodosWhereJoin();
 	
+	public List<CreadorContenido> seleccionarTodosJoinFetch();
+	
 	
 }

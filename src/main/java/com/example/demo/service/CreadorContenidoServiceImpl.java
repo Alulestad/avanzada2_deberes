@@ -45,4 +45,11 @@ public class CreadorContenidoServiceImpl implements ICreadorContenidoService {
 		return this.iCreadorContenidoRepo.seleccionarTodosWhereJoin();
 	}
 
+	@Override
+	public List<CreadorContenido> buscarTodosJoinFetch() {
+		return this.iCreadorContenidoRepo.seleccionarTodosJoinFetch();
+	}
+	
+	
+
 }

@@ -113,4 +113,17 @@ public class CreadorContenidoRepoImpl implements ICreadorContenidoRepo {
 		return creadorContenidos;
 	}
 
+	@Override
+	public List<CreadorContenido> seleccionarTodosJoinFetch() {
+		
+		TypedQuery<CreadorContenido> myQuery=this.entityManager
+				.createQuery("select cc from CreadorContenido cc join fetch cc.videos v", CreadorContenido.class);
+		
+		
+		
+		return myQuery.getResultList();
+	}
+	
+	
+
 }

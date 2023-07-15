@@ -27,4 +27,5 @@ public interface IVideoService {
 
 	public List<Video> buscarTodosWhereJoin();
 
+	public List<Video> buscarTodosJoinFetch();
 }

@@ -27,7 +27,7 @@ public class Tarea8DllApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		//Inner
+		// Inner
 		System.out.println("#########################INNER JOINS#########################");
 		System.out.println("********INNER JOIN CC********");
 		List<CreadorContenido> cc1 = this.iCreadorContenidoService.buscarTodosInnerJoin();
@@ -59,7 +59,7 @@ public class Tarea8DllApplication implements CommandLineRunner {
 
 		});
 
-		//RIGHT
+		// RIGHT
 		System.out.println("#########################OUTER RIGHT JOINS#########################");
 		System.out.println("********OUTER RIGHT JOIN CC********");
 		List<CreadorContenido> cc2 = this.iCreadorContenidoService.buscarTodosOuterRightJoin();
@@ -90,7 +90,7 @@ public class Tarea8DllApplication implements CommandLineRunner {
 
 		});
 
-		//LEFT
+		// LEFT
 		System.out.println("#########################OUTER LEFT JOINS#########################");
 		System.out.println("********OUTER LEFT JOIN CC********");
 		List<CreadorContenido> cc3 = this.iCreadorContenidoService.buscarTodosOuterLeftJoin();
@@ -121,7 +121,7 @@ public class Tarea8DllApplication implements CommandLineRunner {
 
 		});
 
-		//FULL
+		// FULL
 		System.out.println("#########################OUTER FULL JOINS#########################");
 		System.out.println("********OUTER FULL JOIN CC********");
 		List<CreadorContenido> cc4 = this.iCreadorContenidoService.buscarTodosOuterFullJoin();
@@ -152,7 +152,7 @@ public class Tarea8DllApplication implements CommandLineRunner {
 
 		});
 
-		//WHERE
+		// WHERE
 		System.out.println("#########################WHERE JOINS#########################");
 		System.out.println("********WHERE JOIN CC********");
 		List<CreadorContenido> cc5 = this.iCreadorContenidoService.buscarTodosWhereJoin();
@@ -168,7 +168,7 @@ public class Tarea8DllApplication implements CommandLineRunner {
 			}
 
 		});
-		
+
 		System.out.println("********WHERE JOIN VIDEO********");
 		List<Video> v5 = this.iVideoService.buscarTodosWhereJoin();
 		v5.forEach(v -> {
@@ -180,6 +180,31 @@ public class Tarea8DllApplication implements CommandLineRunner {
 			} else {
 				System.out.println("No existe aun video");
 			}
+
+		});
+
+		// Fetch
+		System.out.println("#########################JOIN FETCH#########################");
+		System.out.println("********JOIN FETCH CC********");
+		List<CreadorContenido> cc6 = this.iCreadorContenidoService.buscarTodosJoinFetch();
+		cc6.forEach(cc -> {
+			System.out.println("#CREADOR#");
+			System.out.println(cc);
+			System.out.println("Videos:");
+			List<Video> v = cc.getVideos();
+			v.forEach(System.out::println);
+
+		});
+
+		System.out.println("********JOIN FETCH VIDEO********");
+		List<Video> v6 = this.iVideoService.buscarTodosJoinFetch();
+		v6.forEach(v -> {
+			System.out.println("#VIDEO#");
+			System.out.println(v);
+
+			System.out.println("Creador:");
+			System.out.println(v.getCreadorContenido());
+
 
 		});
 
